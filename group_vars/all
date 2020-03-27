@@ -6,3 +6,4 @@ vpc_id: <specify vpc id>
 cidr_ip: <specify cidr_ip>
 ami_id: ami-6d1c2007
 instance_type: <specify intance_type>
+instance_count : 1

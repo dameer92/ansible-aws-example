@@ -39,7 +39,7 @@
             volume_type: gp2
             volume_size: 100
             delete_on_termination: true
-        exact_count: 6
+        exact_count: "{{instance_count}}"
         count_tag:
           Name: ansible-demo
         instance_tags:
