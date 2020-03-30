@@ -2,21 +2,18 @@
 # Basic provisioning example
 - name: Create AWS resources
   hosts: localhost
-  vars:
-    config_file: "{{ lookup('env', 'OS_CLIENT_CONFIG_FILE') }}"
   connection: local
   gather_facts: False
 
   tasks:
-    - include_vars: "{{ config_file }}"
     - name: Create a security group
       ec2_group:
         name: ansible
         description: "Ansible Security Group"
         region: "{{aws_region}}"
         vpc_id: "{{vpc_id}}"
-        aws_access_key: "{{ clouds.devstack.auth.AWS_ACCESS_KEY_ID }}"
-        aws_secret_key: "{{ clouds.devstack.auth.AWS_SECRET_ACCESS_KEY }}"
+        aws_access_key: "{{aws_access_key}}"
+        aws_secret_key: "{{aws_secret_key}}"
         rules:
           - proto: all
             cidr_ip: "{{cidr_ip}}"
@@ -29,8 +26,8 @@
 
     - name: Create an EC2 instance
       ec2:
-        aws_access_key: "{{ clouds.devstack.auth.AWS_ACCESS_KEY_ID }}"
-        aws_secret_key: "{{ clouds.devstack.auth.AWS_SECRET_ACCESS_KEY }}"
+        aws_access_key: "{{aws_access_key}}"
+        aws_secret_key: "{{aws_secret_key}}"
         key_name: "{{key_name}}"
         region: "{{aws_region}}"
         group_id: "{{firewall.group_id}}"
