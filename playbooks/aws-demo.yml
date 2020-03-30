@@ -41,7 +41,8 @@
             delete_on_termination: true
         exact_count: "{{instance_count}}"
         count_tag:
-          Name: ansible-demo
+          Name: ansible-demo-v1.2
         instance_tags:
           Name: ansible-demo
+          Purpose: Testing
       register: ec2
