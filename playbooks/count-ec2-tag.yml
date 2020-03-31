@@ -5,9 +5,8 @@
   connection: local
   gather_facts: False
 
-# instances with tag Name=Ansible-demo
-tasks:
-  - ec2:
+  tasks:
+    - ec2:
       count_tag:
         Name: Ansible-demo
       instance_tags:
