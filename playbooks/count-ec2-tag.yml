@@ -1,0 +1,12 @@
+---
+# Get count of ec2 with the given tag
+- name: Get count of EC2
+  hosts: localhost
+  connection: local
+  gather_facts: False
+
+# instances with tag Name=Ansible-demo
+tasks:
+  - ec2:
+      count_tag:
+        Name: Ansible-demo  

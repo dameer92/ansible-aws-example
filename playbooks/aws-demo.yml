@@ -41,7 +41,7 @@
             delete_on_termination: true
         exact_count: "{{instance_count}}"
         count_tag:
-          Name: ansible-demo-v1.2
+          Name: Ansible-demo
         instance_tags:
           Name: Ansible-demo
           Purpose: Testing-purpose
