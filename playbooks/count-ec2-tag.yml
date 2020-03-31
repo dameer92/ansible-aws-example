@@ -8,7 +8,7 @@
   tasks:
     name: Remove the Purpose tag
     ec2_tag:
-      region: eu-east-1
+      region: us-east-1
       resource: i-08395f987fa07528b
       tags:
         Purpose:
