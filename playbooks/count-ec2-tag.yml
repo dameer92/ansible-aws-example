@@ -6,7 +6,10 @@
   gather_facts: False
 
   tasks:
-    - name: Add a tag
-      ec2:
-        instance_tags:
-          CountIs: One
+    name: Remove the Purpose tag
+    ec2_tag:
+      region: eu-east-1
+      resource: i-08395f987fa07528b
+      tags:
+        Purpose:
+      state: absent
