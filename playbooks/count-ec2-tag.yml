@@ -9,4 +9,6 @@
 tasks:
   - ec2:
       count_tag:
-        Name: Ansible-demo  
+        Name: Ansible-demo
+      instance_tags:
+        CountIs: One
