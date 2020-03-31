@@ -6,10 +6,10 @@
   gather_facts: False
 
   tasks:
-    name: Remove the Purpose tag
-    ec2_tag:
-      region: us-east-1
-      resource: i-08395f987fa07528b
-      tags:
-        Purpose:
-      state: absent
+    - name: Remove the Purpose tag
+      ec2_tag:
+        region: us-east-1
+        resource: i-08395f987fa07528b
+        tags:
+          Purpose:
+        state: absent
