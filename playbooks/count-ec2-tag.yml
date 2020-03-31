@@ -6,6 +6,7 @@
   gather_facts: False
 
   tasks:
-    - ec2:
-      instance_tags:
-        CountIs: One
+    - name: Add a tag
+      ec2:
+        instance_tags:
+          CountIs: One
