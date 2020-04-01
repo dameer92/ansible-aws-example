@@ -6,6 +6,7 @@
   gather_facts: False
 
   tasks:
+    - debug: var=manageiq.event_target
     - name: Remove the Purpose tag
       ec2_tag:
         region: us-east-1
