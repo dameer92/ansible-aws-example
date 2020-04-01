@@ -5,7 +5,6 @@
   connection: local
   gather_facts: False
 
-- ec2_metadata_facts:
   tasks:
     - debug: var=ansible_ec2_instance_id
     - debug: var=manageiq.api_token
