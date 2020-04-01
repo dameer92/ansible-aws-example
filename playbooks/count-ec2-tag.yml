@@ -5,10 +5,9 @@
   connection: local
   gather_facts: False
 
-- name: Gather facts
-  ec2_facts:
-
   tasks:
+    - name: Gather facts
+      ec2_facts:
     - debug: var=ansible_ec2_instance_id
     - debug: var=manageiq.api_token
     - debug: var=manageiq.service
