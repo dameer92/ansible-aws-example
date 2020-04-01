@@ -6,12 +6,6 @@
   gather_facts: False
 
   tasks:
-    - name: Gather facts
-      ec2_facts:
-    - debug: var=ansible_ec2_instance_id
-    - debug: var=manageiq.api_token
-    - debug: var=manageiq.service
-    - debug: var=manageiq.event_target
     - name: Remove the Purpose tag
       ec2_tag:
         region: us-east-1
