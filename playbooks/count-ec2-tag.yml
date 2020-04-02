@@ -22,10 +22,10 @@
     - set_fact:
         instance_id: "{{ response.json.ems_ref }}"
 
-    - name: Remove the Purpose tag
+    - name: Add the PowerOff tag
       ec2_tag:
         region: us-east-1
         resource: "{{ instance_id }}"
         tags:
-          Purpose:
-        state: absent
+          PowerOff: true
+        state: present
