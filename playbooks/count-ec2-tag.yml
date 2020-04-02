@@ -10,7 +10,19 @@
     - debug: var=manageiq.api_token
     - debug: var=manageiq.service
     - debug: var=manageiq.event_target
-    - debug: var=manageiq.event_target
+
+    - name: Find Instance ID
+      uri:
+        url: "{{ manageiq.api_url }}/api/{{manageiq.event_target}}"
+        method: GET
+        validate_certs: no
+        headers:
+          X-Auth-Token: "{{ manageiq.api_token }}"
+        body_format: json
+      register: response
+
+    - debug: var=response
+
     - name: Remove the Purpose tag
       ec2_tag:
         region: us-east-1
