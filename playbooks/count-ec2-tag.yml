@@ -21,12 +21,14 @@
         body_format: json
       register: response
 
-    - debug: var=response
+    - debug: var=response.json.ems_ref
+    - set_fact:
+        instance_id: "{{ response.json.ems_ref }}"
 
     - name: Remove the Purpose tag
       ec2_tag:
         region: us-east-1
-        resource: i-08395f987fa07528b
+        resource: "{{ instance_id }}"
         tags:
           Purpose:
         state: absent
