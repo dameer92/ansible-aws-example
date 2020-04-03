@@ -39,5 +39,5 @@
         tags:
           found_tag: true
         state: present
-      loop: "{{ ec2_tags }}"
+      loop: "{{ ec2_tags.tags }}"
       when: item.PowerOff == 'True'
