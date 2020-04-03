@@ -30,3 +30,14 @@
       register: ec2_tags
 
     - debug: var=ec2_tags
+    - debug: var=ansible_facts
+
+    - name: Add the PowerOff tag
+      ec2_tag:
+        region: us-east-1
+        resource: "{{ instance_id }}"
+        tags:
+          found_tag: true
+        state: present
+      loop: "{{ ec2_tags }}"
+      when: item.PowerOff == 'True'
