@@ -7,7 +7,6 @@
 
   tasks:
     - debug: var=manageiq.event_target
-
     - name: Find Instance ID
       uri:
         url: "{{ manageiq.api_url }}/api/{{manageiq.event_target}}"
@@ -21,6 +20,15 @@
     - debug: var=response.json.ems_ref
     - set_fact:
         instance_id: "{{ response.json.ems_ref }}"
+
+    - name: "Get $evm.root['dialog_vm_name']"
+      manageiq_automate:
+        workspace: "{{ workspace }}"
+        get_attribute:
+          object: "root"
+          attribute: "dialog_vm_name"
+      register: vm_name
+    - debug: var=vm_name
 
     - name: Add the PowerOff tag
       ec2_tag:
