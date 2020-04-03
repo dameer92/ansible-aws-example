@@ -28,3 +28,5 @@
         resource: "{{ instance_id }}"
         state: list
       register: ec2_tags
+
+    - debug: var=ec2_tags
