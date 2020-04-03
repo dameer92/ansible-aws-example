@@ -1,21 +1,31 @@
 ---
-- name: Get attribute names in root object
+# Get count of ec2 with the given tag
+- name: Get count of EC2
   hosts: localhost
   connection: local
-  vars:
-    - object: root
-
   gather_facts: False
-  roles:
-    - syncrou.manageiq-automate
-    - syncrou.manageiq-vmdb
 
   tasks:
-    - name: "Get root object reference"
-      manageiq_automate:
-        workspace: "{{ workspace }}"
-        get_object_attribute_names:
-          object: "root"
-      register: attribute_list
+    - debug: var=manageiq.event_target
 
-    - debug: msg="attribute_list is {{ attribute_list }}"
+    - name: Find Instance ID
+      uri:
+        url: "{{ manageiq.api_url }}/api/{{manageiq.event_target}}"
+        method: GET
+        validate_certs: no
+        headers:
+          X-Auth-Token: "{{ manageiq.api_token }}"
+        body_format: json
+      register: response
+
+    - debug: var=response.json.ems_ref
+    - set_fact:
+        instance_id: "{{ response.json.ems_ref }}"
+
+    - name: Add the PowerOff tag
+      ec2_tag:
+        region: us-east-1
+        resource: "{{ instance_id }}"
+        tags:
+          PowerOff: true
+        state: present
