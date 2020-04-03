@@ -40,4 +40,4 @@
           found_tag: true
         state: present
       loop: "{{ lookup('dict', ec2_tags.tags) }}"
-    - debug: var=item
+    - debug: var=item.key
