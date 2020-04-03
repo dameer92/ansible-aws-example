@@ -5,9 +5,6 @@
   connection: local
   gather_facts: False
 
-  roles:
-    - syncrou.manageiq-automate
-
   tasks:
     - debug: var=manageiq.event_target
     - name: Find Instance ID
