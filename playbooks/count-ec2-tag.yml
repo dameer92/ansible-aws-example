@@ -1,31 +1,20 @@
 ---
-# Get count of ec2 with the given tag
-- name: Get count of EC2
+- name: Get attribute names in root object
   hosts: localhost
   connection: local
   gather_facts: False
+  vars:
+    - manageiq_validate_certs: false
+
+  roles:
+    - manageiq-core.manageiq-automate
 
   tasks:
-    - debug: var=manageiq.event_target
+    - name: "Get root object reference"
+      manageiq_automate:
+        workspace: "{{ workspace }}"
+        get_object_attribute_names:
+          object: "root"
+      register: attribute_list
 
-    - name: Find Instance ID
-      uri:
-        url: "{{ manageiq.api_url }}/api/{{manageiq.event_target}}"
-        method: GET
-        validate_certs: no
-        headers:
-          X-Auth-Token: "{{ manageiq.api_token }}"
-        body_format: json
-      register: response
-
-    - debug: var=response.json.ems_ref
-    - set_fact:
-        instance_id: "{{ response.json.ems_ref }}"
-
-    - name: Add the PowerOff tag
-      ec2_tag:
-        region: us-east-1
-        resource: "{{ instance_id }}"
-        tags:
-          PowerOff: true
-        state: present
+    - debug: msg="attribute_list is {{ attribute_list }}"
