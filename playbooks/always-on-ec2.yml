@@ -27,4 +27,4 @@
         region: us-east-1
         resource: "{{ instance_id }}"
         state: list
-        register: ec2_tags
+      register: ec2_tags
