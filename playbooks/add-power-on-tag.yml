@@ -36,4 +36,4 @@
         resource: "{{ instance_id }}"
         tags:
           Power: On
-        state: Present
+        state: present
