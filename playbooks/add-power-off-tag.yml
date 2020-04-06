@@ -35,5 +35,5 @@
         region: us-east-1
         resource: "{{ instance_id }}"
         tags:
-          Power: Off
+          Power: "Off"
         state: present
