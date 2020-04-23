@@ -5,7 +5,7 @@
   gather_facts: False
 
   tasks:
-    - debug: var="{{test_var}}"
+    - debug: var="test_var"
 
     - name: Call Terraform api
       uri:
