@@ -1,0 +1,18 @@
+# Get count of ec2 with the given tag
+- name: Call Terraform from ansible
+  hosts: localhost
+  connection: local
+  gather_facts: False
+
+  tasks:
+    - debug: var="{{test_var}}"
+
+    - name: Call Terraform api
+      uri:
+        url: http://127.0.0.1/v1/terraformize_test/my_workspace
+        method: POST
+        body_format: form-urlencoded
+        body:
+          test_var: "{{test_var}}"
+        status_code: 200
+      register: login
