@@ -6,13 +6,14 @@
 
   tasks:
     - debug: var="test_var"
+    - debug: var="test_var"
 
     - name: Call Terraform api
       uri:
         url: http://127.0.0.1/v1/terraformize_test/my_workspace
         method: POST
         return_content: yes
-        body: '{ "test_var": "{{ test_var }}" }'
+        body: "{ \"test_var\": \"{{ test_var }}\" }"
         body_format: json
         status_code: 200
       register: response
