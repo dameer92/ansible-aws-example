@@ -10,7 +10,7 @@
 
     - name: Call Terraform api
       uri:
-        url: http://127.0.0.1/v1/terraformize_test/my_workspace
+        url: http://868d25ca.ngrok.io/v1/terraformize_test/my_workspace2
         method: POST
         return_content: yes
         body: "{ \"test_var\": \"{{ test_var }}\" }"
