@@ -11,8 +11,9 @@
       uri:
         url: http://127.0.0.1/v1/terraformize_test/my_workspace
         method: POST
-        body_format: form-urlencoded
-        body:
-          test_var: "{{test_var}}"
+        return_content: yes
+        body: '{ "test_var": "{{ test_var }}" }'
+        body_format: json
         status_code: 200
-      register: login
+      register: response
+    - debug: var=response
