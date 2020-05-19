@@ -8,7 +8,7 @@ instance_type: t2.micro # instance type to use for the instance
 image: ami-0f7919c33c90f5b58 # ami ID to use for the instance
 vpc_subnet_id: # list the subnet ID(s) in which to launch the instance (VPC), it will randomly choose one
   - subnet-06fe927c
-region: us-west-2 # The AWS region to use. Must be specified if ec2_url is not used.
+region: us-east-2 # The AWS region to use. Must be specified if ec2_url is not used.
 instance_tags:
   Name: "{{ vm_name | default('demovm') }}" # Name of the vm
   environment: "{{ tag_0_environment | default('dev') }}" # environment tag
