@@ -1,0 +1,25 @@
+---
+# Get count of ec2 with the given tag
+- name: Get count of EC2
+  hosts: localhost
+  connection: local
+  gather_facts: False
+
+  tasks:
+
+    - name: Remove power On tag
+      ec2_tag:
+        region: us-east-1
+        resource: <<hardcode ur instance ID or use ansible vars>>
+        tags:
+          Power:
+        state: absent
+
+    - name: Add power On tag
+      ec2_tag:
+        region: us-east-1
+        resource: <<hardcode ur instance ID or use ansible vars>>
+        tags:
+          Power: "Off"
+        state: present
+        
